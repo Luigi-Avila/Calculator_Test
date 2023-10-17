@@ -1,5 +1,6 @@
 package com.cursosant.calculatorbase
 
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,7 +25,7 @@ class CalculatorUtilsMockTest{
     }
 
     @Test
-    fun `Calculation call checkOrResolve and doesn't return`(){
+    fun `Calculation calls checkOrResolve and doesn't return`(){
         // Given
         val operation = "5*3"
         val isFromResolve = true
@@ -32,6 +33,20 @@ class CalculatorUtilsMockTest{
         calculatorUtils.checkOrResolve(operation, isFromResolve)
         //Then
         verify(operations).tryResolve(operation, isFromResolve, listener)
+    }
+
+    @Test
+    fun `Calculation calls addOperator and doesn't return`(){
+        //Given
+        val operator = "-"
+        val operation = "4+"
+        var isCorrect = false
+        //When
+        calculatorUtils.addOperator(operator, operation){
+            isCorrect = true
+        }
+        //Then
+        assertTrue(isCorrect)
     }
 
 }
