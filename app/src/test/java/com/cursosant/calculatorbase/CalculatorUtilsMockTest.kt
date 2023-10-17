@@ -1,5 +1,6 @@
 package com.cursosant.calculatorbase
 
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -36,7 +37,7 @@ class CalculatorUtilsMockTest{
     }
 
     @Test
-    fun `Calculation calls addOperator and doesn't return`(){
+    fun `Calculation calls addOperator with valid subtraction and doesn't return`(){
         //Given
         val operator = "-"
         val operation = "4+"
@@ -47,6 +48,20 @@ class CalculatorUtilsMockTest{
         }
         //Then
         assertTrue(isCorrect)
+    }
+
+    @Test
+    fun `Calculation calls addOperator with an invalid subtraction and doesn't return`(){
+        //Given
+        val operator ="-"
+        val operation = "4."
+        var isCorrect = false
+        //When
+        calculatorUtils.addOperator(operator, operation){
+            isCorrect = true
+        }
+        //Then
+        assertFalse(isCorrect)
     }
 
 }
