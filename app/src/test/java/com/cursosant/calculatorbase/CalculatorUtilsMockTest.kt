@@ -7,6 +7,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.verify
+import org.mockito.Mockito.verifyNoInteractions
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -62,6 +63,20 @@ class CalculatorUtilsMockTest{
         }
         //Then
         assertFalse(isCorrect)
+    }
+
+    @Test
+    fun `Calculation calls addPoint with an operation without a point and doesn't return`(){
+        //Given
+        val operation = "4x4"
+        var isCorrect = false
+        //When
+        calculatorUtils.addPoint(operation){
+            isCorrect = true
+        }
+        //Then
+        assertTrue(isCorrect)
+        verifyNoInteractions(operations)
     }
 
 }

@@ -19,10 +19,7 @@ class CalculatorUtils(private val operations: Operations, private val listener: 
     }
 
     fun addPoint(operation: String, callback: () -> Unit) {
-//        if ((Constants.POINT in operation).not()) {
-//
-//        }
-        if (!operation.contains(Constants.POINT)) {
+        if (Constants.POINT !in operation) {
             callback()
         } else {
             val operator = operations.getOperator(operation)
